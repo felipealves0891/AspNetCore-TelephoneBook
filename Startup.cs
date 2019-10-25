@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using TelephoneBook.Models;
+using TelephoneBook.Data;
 
 namespace TelephoneBook
 {
@@ -25,6 +28,9 @@ namespace TelephoneBook
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ContactContext>(options => 
+                options.UseInMemoryDatabase("ContactList"));
+                
             services.AddControllers();
         }
 
